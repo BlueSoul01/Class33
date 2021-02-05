@@ -7,7 +7,7 @@ var engine, world;
 var box1, pig1,pig3;
 var backgroundImg,platform;
 var bird, slingshot;
-
+var score=0;
 var gameState = "onSling";
 var bg = "sprites/bg1.png";
 
@@ -49,7 +49,10 @@ function setup(){
 function draw(){
     if(backgroundImg)
         background(backgroundImg);
-    
+        fill("white");
+        noStroke();
+        textSize(35);
+    text("score " +score, width-300, 50)
     
     Engine.update(engine);
     //strokeWeight(4);
@@ -87,6 +90,9 @@ function mouseReleased(){
 function keyPressed(){
     if(keyCode===32)
     slingshot.attach(bird.body);
+    bird.trajectory=[];
+    Matter.Body.setPosition(bird.body, {x:200, y:50})
+
 }
 
 async function getTime(){
